@@ -1,10 +1,10 @@
-import { authMiddleware } from "@clerk/nextjs/server";
-
-export default authMiddleware({
-  // Defina aqui as rotas que podem ser acessadas sem login
-  publicRoutes: ["/"],
-});
-
+import { clerkMiddleware } from '@clerk/nextjs/server';
+ 
+export default clerkMiddleware()
+ 
 export const config = {
-  matcher: ["/((?!.+.[w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    '/((?!.*\\..*|_next).*)', // Don't run middleware on static files
+    '/', // Run middleware on index page
+    '/(api|trpc)(.*)'], // Run middleware on API routes
 };
